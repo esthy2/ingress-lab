@@ -77,6 +77,32 @@ helm install aws-load-balancer-controller eks/aws-load-balancer-controller --nam
 ### Create sample applications 
 
 (Let's call them app1 and app2). 
+## Explain manifest file
+Deployment (apps/v1) — app1
+
+- **replicas:** 2 → runs two identical Pods for availability.
+
+- **selector.matchLabels:** app=app1 → tells the Deployment which Pods it owns.
+
+- **template.metadata.labels:** app=app1 → labels applied to the Pods it creates (must match the selector above).
+
+container
+
+- **name: app1, image:** nginx → runs the default Nginx image (latest tag if not specified).
+
+- **ports.containerPort:** 80 → declares Nginx listens on port 80 inside the container.
+
+- **Service** (v1) — app1-service
+
+- **type:** ClusterIP → exposes the app on a stable internal cluster IP (not public internet).
+
+- **ports:** 80 → targetPort: 80 → traffic to Service port 80 is forwarded to container port 80.
+
+- **selector:** app=app1 → routes traffic only to Pods from the Deployment (matching label).
+
+##**How traffic flows (in-cluster)**
+
+Client Pod → app1-service:80 → one of the app=app1 Pods → container port 80 (Nginx).
 
 Create files for each app:
 
