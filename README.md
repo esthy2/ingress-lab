@@ -72,7 +72,7 @@ helm repo update
 
 - Install the controller
 ```bash
-helm install aws-load-balancer-controller eks/aws-load-balancer-controller --namespace kube-system --set clusterName=dev-cluster --set serviceAccount.create=false --set serviceAccount.name=aws-load-balancer-controller
+helm install aws-load-balancer-controller eks/aws-load-balancer-controller --namespace kube-system --set clusterName=my-cluster --set serviceAccount.create=false --set serviceAccount.name=aws-load-balancer-controller
 ```
 ### Create sample applications 
 
