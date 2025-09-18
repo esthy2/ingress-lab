@@ -1,4 +1,7 @@
 # ingress-lab
+Hey everyone, welcome back to EsthyTech! In today’s class, we’re diving into one of the most powerful ways to run Kubernetes in production. Amazon EKS. We’ll be setting up a Kubernetes cluster using eksctl,
+a super simple CLI tool that makes the whole process smooth and fast. By the end of this session, you’ll have your very own production-ready EKS cluster up and running, and you’ll be able to start deploying workloads right away. So grab your coffee, and let’s get started!”
+
 **Note:** This lab should be done in the **EKS cluster**
 # The ingress resource
 Ingress exposes HTTP and HTTPS routes from outside the cluster to services within the cluster. Traffic routing is controlled by rules defined on the Ingress resource.
