@@ -32,14 +32,14 @@ The following prerequisites are necessary to complete this Lb.
 ```
 - **kubeconfig Updated**: update your kubeconfig to access the cluster
 ```bash
-aws eks update-kubeconfig --region us-east-1 --name dev-cluster
+aws eks update-kubeconfig --region us-east-1 --name my-cluster
 ```
 
 ### Enable ingress controller in EKS
 
 1. create an IAM OIDC provider for your cluster (if not already created):
 ```bash
-eksctl utils associate-iam-oidc-provider --region us-east-1 --cluster dev-cluster --approve
+eksctl utils associate-iam-oidc-provider --region us-east-1 --cluster my-cluster --approve
 ```
 2. Create an IAM policy for the ALB controller:
 
@@ -56,7 +56,7 @@ aws iam create-policy --policy-name AWSLoadBalancerControllerIAMPolicy --policy-
 
 3. Create an IAM role and ServiceAccount for the controller: Do not forget to replace ``your-account-id`` with your aws account ID 
 ```bash
-eksctl create iamserviceaccount --cluster=dev-cluster --namespace=kube-system --name=aws-load-balancer-controller --attach-policy-arn=arn:aws:iam::<your-account-id>:policy/AWSLoadBalancerControllerIAMPolicy --override-existing-serviceaccounts --region us-east-1 --approve
+eksctl create iamserviceaccount --cluster=my-cluster --namespace=kube-system --name=aws-load-balancer-controller --attach-policy-arn=arn:aws:iam::<your-account-id>:policy/AWSLoadBalancerControllerIAMPolicy --override-existing-serviceaccounts --region us-east-1 --approve
 ```
 
 4. Install the ALB controller using Helm:
